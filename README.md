@@ -1,5 +1,8 @@
 # empfohlen
 
+wp-admin logn 
+username = admin 
+password = creativedev22 
 
 # app_research
 Empfohlen - App Research Project
