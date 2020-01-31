@@ -5,6 +5,10 @@
 /wp-admin/*
 /wp-includes/*
 wp-content/uploads/*
+wp-content/themes/twentynineteen/*
+wp-content/themes/twentyseventeen/*
+wp-content/themes/twentysixteen/*
+wp-content/themes/twentytwenty/*
 /.htaccess
 /index.php
 /license.txt
