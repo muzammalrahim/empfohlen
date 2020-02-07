@@ -67,7 +67,7 @@ if( !function_exists( 'empfohlen_project_post_type' ) ){
             'public' => true,
             'exclude_from_search' => true,
             'publicly_queryable' => true,
-            'show_in_menu' => 'empfohlen-setting',
+            'show_in_menu' => 'empfohlen',
             'show_ui' => true,
             'query_var' => true,
             'capability_type' => 'post',
@@ -75,7 +75,7 @@ if( !function_exists( 'empfohlen_project_post_type' ) ){
             'capabilities'    => empfohlen_get_project_capabilities(),
             'menu_icon' => 'dashicons-businessman',
             'menu_position' => 14,
-            'supports'              => array( 'title', 'editor', 'thumbnail' ),
+            'supports'              => array( 'title', 'thumbnail' ),
         );
 
 
@@ -88,14 +88,14 @@ add_action( 'init', 'empfohlen_project_post_type' );
 
 
 
-add_action('admin_menu', 'my_admin_menu'); 
-function my_admin_menu() { 
-    add_submenu_page(
-    		'empfohlen', 
-    		'Projects', 'EMP Projects', 
-    		'manage_options', 
-    		'edit.php?post_type=project'); 
-}
+// add_action('admin_menu', 'my_admin_menu'); 
+// function my_admin_menu() { 
+//     add_submenu_page(
+//     		'empfohlen', 
+//     		'Projects', 'EMP Projects', 
+//     		'manage_options', 
+//     		'edit.php?post_type=project'); 
+// }
 
 
 

@@ -3,7 +3,36 @@
  * included in this file.
  */
 
- .w100{ width: 100%; }
- .acf_field_w20 .acf-input .acf-input-wrap {
-    width: 20%;
+.w100{ width: 100%; }
+.acf_field_w20 .acf-input .acf-input-wrap { width: 20%; }
+.d_block{ display: block; }
+.clear_both{ clear: both !important; }
+
+.block_w20p img { max-width: 120px; }
+
+.block_row{
+		    margin-top: 80px;
+    text-align: center;
+	}
+
+.block_w20p {
+	     display: inline-block;
+    border: 2px solid #9E9E9E;
+    min-width: 10%;
+    text-align: center;
+    padding: 5px 0px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
+        margin: 20px;
+
+ }
+
+
+
+.block_w20p .btitle{
+	     margin: 10px 0px 0px 0px;
+    background: #9E9E9E;
+    padding: 10px;
+    color: white;
 }
+
+.d_link{ text-decoration: none; }

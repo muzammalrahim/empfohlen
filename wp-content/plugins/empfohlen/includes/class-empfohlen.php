@@ -218,12 +218,45 @@ class Empfohlen {
 	}
 
 
+	private function is_request( $type ) {
+			switch ( $type ) {
+				case 'admin':
+					return is_admin();
+				case 'ajax':
+					return defined( 'DOING_AJAX' );
+				case 'cron':
+					return defined( 'DOING_CRON' );
+				case 'frontend':
+					return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
+			}
+		}
+
 
 	// include all required files for the plugin.
 	public function load_empfohlen_files(){	
 
+		// custom post type 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/post-type/project-post-type.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/post-type/ticket-post-type.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/taxonomy/skills-taxonomy.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/post-type/request-post-type.php'; 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/post-type/withdrawl-post-type.php'; 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/post-type/task-post-type.php'; 
+
+
+
+		// shortcodes 
+		if ( $this->is_request( 'frontend' ) ) {
+				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/registeration/registeration_shotcode.php';
+				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/profile/profile_shotcode.php';
+		}
+
+		// memeber page template 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/member/pagetemplater.php';
+		  
+
+		
+
 
 	}
 

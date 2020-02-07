@@ -52,6 +52,10 @@ class Empfohlen_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		$this->load_shotcode();
+		
+
+
 	}
 
 	/**
@@ -98,6 +102,16 @@ class Empfohlen_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/empfohlen-public.js', array( 'jquery' ), $this->version, false );
 
+		wp_localize_script( $this->plugin_name, 'emp_vars', array('emp_ajax_url' => admin_url( 'admin-ajax.php' ),));
+
+
+
+	}
+
+
+
+	public function load_shotcode() {
+		// require_once plugin_dir_url( __FILE__ ) . 'partials/registeration/registeration_shotcode.php';
 	}
 
 }

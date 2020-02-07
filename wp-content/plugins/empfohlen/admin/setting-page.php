@@ -16,7 +16,7 @@ class EmpfohlenSetting {
 	public function empfohlen_setting_add_plugin_page() {
 		
 		add_menu_page(
-			__('Empfohlen Dashboard', 'emp' ), 
+			__('Empfohlen', 'emp' ), 
 			__('Empfohlen', 'emp' ), 
 			'manage_options', // capability
 			'empfohlen', // menu_slug
@@ -24,6 +24,17 @@ class EmpfohlenSetting {
 			'dashicons-dashboard', // icon_url
 			3 // position
 		);
+
+
+		add_submenu_page(
+	        'empfohlen',
+	        __( 'Empfohlen Dashboard', 'emp' ),
+	        __( 'Dashboard', 'emp' ),
+	        'manage_options',
+	        'empfohlen-dashboard',
+	        array( $this, 'empfohlen_dashboard_admin_page' ),
+	        0
+    	);
 
 		add_submenu_page(
 	        'empfohlen',
@@ -42,7 +53,7 @@ class EmpfohlenSetting {
 	
 
 	public function empfohlen_setting_create_admin_page() {
-		$this->empfohlen_setting_options = get_option( 'empfohlen_setting_option_name' ); ?>
+		$this->empfohlen_setting_options = get_option( 'emp_setting' ); ?>
 
 		<div class="wrap">
 			<h2>Empfohlen Setting</h2>
@@ -62,7 +73,7 @@ class EmpfohlenSetting {
 	public function empfohlen_setting_page_init() {
 		register_setting(
 			'empfohlen_setting_option_group', // option_group
-			'empfohlen_setting_option_name', // option_name
+			'emp_setting', // option_name
 			array( $this, 'empfohlen_setting_sanitize' ) // sanitize_callback
 		);
 
@@ -90,9 +101,9 @@ class EmpfohlenSetting {
 		);
 
 		add_settings_field(
-			'currency_2', // id
+			'emp_currency', // id
 			'Currency', // title
-			array( $this, 'currency_2_callback' ), // callback
+			array( $this, 'emp_currency_callback' ), // callback
 			'empfohlen-setting-admin', // page
 			'empfohlen_setting_setting_section' // section
 		);
@@ -108,8 +119,8 @@ class EmpfohlenSetting {
 			$sanitary_values['auto_mail_description_1'] = esc_textarea( $input['auto_mail_description_1'] );
 		}
 
-		if ( isset( $input['currency_2'] ) ) {
-			$sanitary_values['currency_2'] = sanitize_text_field( $input['currency_2'] );
+		if ( isset( $input['emp_currency'] ) ) {
+			$sanitary_values['emp_currency'] = sanitize_text_field( $input['emp_currency'] );
 		}
 
 		return $sanitary_values;
@@ -121,29 +132,97 @@ class EmpfohlenSetting {
 
 	public function auto_mail_0_callback() {
 		printf(
-			'<input type="checkbox" name="empfohlen_setting_option_name[auto_mail_0]" id="auto_mail_0" value="auto_mail_0" %s> <label for="auto_mail_0">Enable sending auto email to new user. </label>',
+			'<input type="checkbox" name="emp_setting[auto_mail_0]" id="auto_mail_0" value="auto_mail_0" %s> <label for="auto_mail_0">Enable sending auto email to new user. </label>',
 			( isset( $this->empfohlen_setting_options['auto_mail_0'] ) && $this->empfohlen_setting_options['auto_mail_0'] === 'auto_mail_0' ) ? 'checked' : ''
 		);
 	}
 
 	public function auto_mail_description_1_callback() {
 		printf(
-			'<textarea class="large-text" rows="5" name="empfohlen_setting_option_name[auto_mail_description_1]" id="auto_mail_description_1">%s</textarea>',
+			'<textarea class="large-text" rows="5" name="emp_setting[auto_mail_description_1]" id="auto_mail_description_1">%s</textarea>',
 			isset( $this->empfohlen_setting_options['auto_mail_description_1'] ) ? esc_attr( $this->empfohlen_setting_options['auto_mail_description_1']) : ''
 		);
 	}
 
-	public function currency_2_callback() {
+	public function emp_currency_callback() {
 		printf(
-			'<input class="regular-text" type="text" name="empfohlen_setting_option_name[currency_2]" id="currency_2" value="%s">',
-			isset( $this->empfohlen_setting_options['currency_2'] ) ? esc_attr( $this->empfohlen_setting_options['currency_2']) : ''
+			'<input class="regular-text" type="text" name="emp_setting[emp_currency]" id="emp_currency" value="%s">',
+			isset( $this->empfohlen_setting_options['emp_currency'] ) ? esc_attr( $this->empfohlen_setting_options['emp_currency']) : ''
 		);
 	}
 
 
 	public function empfohlen_dashboard_admin_page(){ ?>
 
-		<h1>This is Dashboard </h1>
+		<h1 style="text-align: center;">Dashboard </h1>
+
+		<?php
+
+		 
+		$project_query = new WP_Query( array('post_type' => 'project') );
+		$project = $project_query->found_posts;
+
+		$withdrawl_query = new WP_Query( array('post_type' => 'withdrawl') );
+		$withdrawl = $withdrawl_query->found_posts;
+		 
+		$ticket_query = new WP_Query( array('post_type' => 'ticket') );
+		$ticket = $ticket_query->found_posts;
+
+		$request_query = new WP_Query( array('post_type' => 'request') );
+		$request = $request_query->found_posts;
+
+
+
+
+		 // echo "<pre> project "; print_r(  $project ); echo "</pre> ";  
+
+
+		?>
+
+		<div class="row block_row">
+				<div class="emp_d_block block_w20p">
+					<a class="d_link" href="<?php echo get_admin_url()?>edit.php?post_type=project">
+					<div class="d_block_icon">
+						 <img src="<?php echo EMPFOHLEN_URI?>images/dashboard_icons/project.png">
+					</div>
+					<h3 class="btitle">Projects (<?php echo $project;?>)</h3>
+					</a>
+				</div>
+
+				<div class="emp_d_block block_w20p">
+					<a class="d_link" href="<?php echo get_admin_url() ?>edit.php?post_type=withdrawl">
+					<div class="d_block_icon">
+						 <img src="<?php echo EMPFOHLEN_URI?>images/dashboard_icons/withdraw.png">
+					</div>
+					<h3 class="btitle">Withdrawl (<?php echo $withdrawl;?>)</h3>
+					</a>
+				</div>
+
+
+				<div class="emp_d_block block_w20p">
+					<a class="d_link" href="<?php echo get_admin_url() ?>edit.php?post_type=ticket">
+					<div class="d_block_icon">
+						 <img src="<?php echo EMPFOHLEN_URI?>images/dashboard_icons/tasks.png">
+					</div>
+					<h3 class="btitle">Ticket (<?php echo $ticket;?>)</h3>
+					</a>
+				</div>
+
+
+				<div class="emp_d_block block_w20p">
+					<a class="d_link" href="<?php echo get_admin_url() ?>edit.php?post_type=request">
+					<div class="d_block_icon">
+						 <img src="<?php echo EMPFOHLEN_URI?>images/dashboard_icons/request.png">
+					</div>
+					<h3 class="btitle">Request (<?php echo $request;?>)</h3>
+					</a>
+				</div>
+
+
+		</div>
+
+
+	 
 
 	<?php
 	}
@@ -154,9 +233,9 @@ if ( is_admin() )
 
 /* 
  * Retrieve this value with:
- * $empfohlen_setting_options = get_option( 'empfohlen_setting_option_name' ); // Array of All Options
+ * $empfohlen_setting_options = get_option( 'emp_setting' ); // Array of All Options
  * $auto_mail_0 = $empfohlen_setting_options['auto_mail_0']; // Auto Mail
  * $auto_mail_description_1 = $empfohlen_setting_options['auto_mail_description_1']; // Auto Mail Description
- * $currency_2 = $empfohlen_setting_options['currency_2']; // Currency
+ * $emp_currency = $empfohlen_setting_options['emp_currency']; // Currency
  */
 

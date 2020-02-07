@@ -1,0 +1,87 @@
+
+========================================================
+1) update list of branches on local repository 
+	git fetch -p
+
+========================================================
+
+git remote add origin https://github.com/arslanAvestGroup/lms
+git remote add origin https://github.com/arslanAvestGroup/ILJPS_app
+
+========================================================
+// Git command to push changes from different account. 
+git config --local credential.helper ""
+git push
+
+========================================================
+// push new branch created at local 
+git push --set-upstream origin listing-page
+
+========================================================
+// Clone a specific Git branch?
+git clone -b <branch> <remote_repo>
+git clone -b backend_transcript https://github.com/arslanAvestGroup/lms.git
+
+========================================================
+// clone a privite repository.  
+git clone https://muzammalrahim@github.com/koobits-jiang/ContentAdmin.git
+ 
+git pull --tags origin v_1.1
+
+
+git clone https://muzammalrahim@github.com/
+
+git clone https://muzammalrahim@github.com/DtheRock/woocommerce-erp.git
+git clone https://muzammalrahim@github.com/DtheRock/woocommerce-erp-b2b.git
+
+=========================================================================
+Office github:
+username : creative.joomdev@gmail.com
+new password: creative84@@
+github account = muzammalrahim
+
+=========================================================================
+// Git command to push changes. 
+git config --local credential.helper ""
+git push
+
+=========================================================================
+// push new branch created at local 
+git push --set-upstream origin listing-page
+
+=========================================================================	
+
+git clone https://github.com/muzammalrahim/app_research.git
+
+git clone https://muzammalrahim@github.com/app_research.git 
+
+
+https://github.com/mitchmalone/roundly-next-fe.git
+git clone https://muzammalrahim@github.com/mitchmalone/roundly-next-fe.git
+
+git clone https://muzammalrahim@github.com/app_research.git
+
+git clone https://muzammalrahim@github.com/muzammalrahim/app_research.git
+
+https://github.com/muzammalrahim/app_research.git
+	
+	
+ 
+git config --local credential.helper ""	
+git clone -b frontend https://muzammalrahim@github.com/muzammalrahim/empfohlen.git	
+
+
+
+ 
+ 
+
+ Sure regarding the chagnes will update the code. 
+ 1) will add an input box where you can put the data in array or json format and a button which will process the data and generate bulk images
+ 2) will add an input box where you would be able to enter file name for each image. 
+ 3) will update the code to be able to list and generate more than one image(some button which will add new input box group for new image).
+ 
+ 
+ 
+ 
+ 
+

@@ -79,6 +79,8 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 define( 'WP_DEBUG', true );
+define('WP_DEBUG_DISPLAY', false);
+@ini_set('display_errors', 1);
 
 /* That's all, stop editing! Happy publishing. */
 
