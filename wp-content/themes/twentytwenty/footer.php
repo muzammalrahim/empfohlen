@@ -11,7 +11,9 @@
  * @since 1.0.0
  */
 
+echo do_shortcode('[chat_box]');
 ?>
+
 			<footer id="site-footer" role="contentinfo" class="header-footer-group">
 
 				<div class="section-inner">
